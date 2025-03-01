@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            transition: all 0.5s ease;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+        }
+        .navbar a {
+            color: #ff7f50;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar a:hover {
+            background: #ff7f50;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            width: 60%;
+            margin: auto;
+            margin-top: 50px;
+            box-shadow: 0 4px 8px rgba(255, 127, 80, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .hidden { display: none; }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="login-page" class="container">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="goToQuestions()">Login</button>
+    </div>
+
+    <div id="questions-page" class="container hidden">
+        <h1>Personalized Questions</h1>
+        <p>What is your daily activity level?</p>
+        <select id="activity-level">
+            <option value="low">Low</option>
+            <option value="moderate">Moderate</option>
+            <option value="high">High</option>
+        </select>
+        <button onclick="goToBMI()">Next</button>
+    </div>
+    
+    <div class="navbar hidden">
+        <a href="#" onclick="showTab('bmi-page')">BMI</a>
+        <a href="#" onclick="showTab('nutrition-page')">Nutrition Plan</a>
+        <a href="#" onclick="showTab('exercise-page')">Exercise Plan</a>
+        <a href="#" onclick="showTab('tracking-page')">Tracking</a>
+        <a href="#" onclick="showTab('subscription-page')">Subscription</a>
+    </div>
+    
+    <div id="bmi-page" class="container hidden">
+        <h1>BMI Calculator</h1>
+        <input type="number" id="weight" placeholder="Weight (kg)">
+        <input type="number" id="height" placeholder="Height (cm)">
+        <button onclick="goToExercisePlan()">Calculate BMI</button>
+        <p id="bmi-result"></p>
+    </div>
+
+    <div id="exercise-page" class="container hidden">
+        <h1>Recommended Exercise Plan</h1>
+        <ul id="workout-plan">
+            <li>Squats</li>
+            <li>Deadlifts</li>
+            <li>Push-ups</li>
+            <li>Pull-ups</li>
+            <li>Bench Press</li>
+            <li>Overhead Press</li>
+            <li>Lunges</li>
+            <li>Plank</li>
+            <li>Bicep Curls</li>
+            <li>Tricep Dips</li>
+        </ul>
+        <button onclick="goToNutrition()">Next</button>
+    </div>
+    
+    <div id="nutrition-page" class="container hidden">
+        <h1>Recommended Nutrition Plan</h1>
+        <h2>Vegetarian Plan</h2>
+        <ul>
+            <li>Oats with nuts and fruits - 350 kcal</li>
+            <li>Dal, rice, and mixed vegetables - 500 kcal</li>
+            <li>Greek yogurt with seeds - 200 kcal</li>
+            <li>Paneer and whole wheat roti - 450 kcal</li>
+            <li>Chickpeas salad - 300 kcal</li>
+        </ul>
+        <h2>Non-Vegetarian Plan</h2>
+        <ul>
+            <li>Boiled eggs with toast - 400 kcal</li>
+            <li>Chicken breast with quinoa - 550 kcal</li>
+            <li>Tuna salad - 350 kcal</li>
+            <li>Grilled fish with veggies - 500 kcal</li>
+            <li>Protein shake with nuts - 300 kcal</li>
+        </ul>
+        <button onclick="goToSubscription()">Next</button>
+    </div>
+    
+    <div id="subscription-page" class="container hidden">
+        <h1>Subscription Plans</h1>
+        <p>Choose a plan to access premium features</p>
+        <ul>
+            <li>Basic Plan - ₹499/month</li>
+            <li>Pro Plan - ₹999/month</li>
+            <li>Elite Plan - ₹1499/month</li>
+        </ul>
+    </div>
+
+    <script>
+        function goToQuestions() {
+            document.getElementById("login-page").classList.add("hidden");
+            document.getElementById("questions-page").classList.remove("hidden");
+        }
+        function goToBMI() {
+            document.getElementById("questions-page").classList.add("hidden");
+            document.getElementById("bmi-page").classList.remove("hidden");
+        }
+        function goToExercisePlan() {
+            document.getElementById("bmi-page").classList.add("hidden");
+            document.getElementById("exercise-page").classList.remove("hidden");
+        }
+        function goToNutrition() {
+            document.getElementById("exercise-page").classList.add("hidden");
+            document.getElementById("nutrition-page").classList.remove("hidden");
+        }
+        function goToSubscription() {
+            document.getElementById("nutrition-page").classList.add("hidden");
+            document.getElementById("subscription-page").classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>
